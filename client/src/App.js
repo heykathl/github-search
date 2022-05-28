@@ -1,11 +1,11 @@
 import './App.css';
 import axios from 'axios'
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Language from './Language'
 
 function App() { 
   const userNameRef = useRef()
-  const [faveLanguage, setFaveLanguage] = useState([])
+  const [faveLanguage, setFaveLanguage] = useState(["Find out a user's favourite programming language!"])
   const language = [];
 
   const handleApiSearch = async () => {
@@ -18,8 +18,12 @@ function App() {
       })  
       userNameRef.current.value = null
     })
-    githubLanguage()
+    .catch((e) => {
+      console.log(e.message);
+    })
+      githubLanguage()
   }
+   
 
   const githubLanguage = () => {
     const counts = {}
@@ -34,16 +38,16 @@ function App() {
       }
     }
     // console.log(maxKey)
-    setFaveLanguage(maxKey);
+    setFaveLanguage("It's " + maxKey + "!");
   }
 
   return (
-    <>
+    <div className="App">
     <h1>GitHub Search</h1>
     <input ref={userNameRef} type="text"/>
     <button onClick={handleApiSearch}>Search</button>
     <Language faveLanguage={faveLanguage}/>
-    </>
+    </div>
   );
 }
 
