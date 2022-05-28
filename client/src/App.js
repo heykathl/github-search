@@ -1,23 +1,27 @@
 import './App.css';
 import axios from 'axios'
 import React, { useState, useRef, useEffect } from 'react';
+import Language from './Language'
 
 function App() { 
   const userNameRef = useRef()
+  const [faveLanguage, setFaveLanguage] = useState([])
+  const language = [];
 
   const handleApiSearch = async () => {
     const username = userNameRef.current.value
-    // console.log(username)
-    const language = [];
     await axios.get(`https://api.github.com/users/${username}/repos`)
     .then((response) => {
       const data = response.data;
       data.map((res) => {
         language.push(res.language)
-      })
-      // console.log(language)
+      })  
+      userNameRef.current.value = null
     })
+    githubLanguage()
+  }
 
+  const githubLanguage = () => {
     const counts = {}
     let maxCount = 0
     let maxKey;
@@ -29,8 +33,8 @@ function App() {
         maxKey = key;
       }
     }
-    console.log(maxKey)
-    return maxKey;
+    // console.log(maxKey)
+    setFaveLanguage(maxKey);
   }
 
   return (
@@ -38,6 +42,7 @@ function App() {
     <h1>GitHub Search</h1>
     <input ref={userNameRef} type="text"/>
     <button onClick={handleApiSearch}>Search</button>
+    <Language faveLanguage={faveLanguage}/>
     </>
   );
 }
