@@ -2,11 +2,14 @@ import './App.css';
 import axios from 'axios'
 import React, { useState, useRef, useEffect } from 'react';
 
-function App() {
+function App() { 
+  const userNameRef = useRef()
 
   const handleApiSearch = async () => {
+    const username = userNameRef.current.value
+    // console.log(username)
     const language = [];
-    await axios.get(`https://api.github.com/users/heykathl/repos&per_page=100`)
+    await axios.get(`https://api.github.com/users/${username}/repos`)
     .then((response) => {
       const data = response.data;
       data.map((res) => {
@@ -33,7 +36,7 @@ function App() {
   return (
     <>
     <h1>GitHub Search</h1>
-    <input type="text"/>
+    <input ref={userNameRef} type="text"/>
     <button onClick={handleApiSearch}>Search</button>
     </>
   );
