@@ -39,8 +39,7 @@ cd github-search
 Once the repository has been cloned you will be able to install the dependencies from Node Package Manager.
 
 ```
-npm install
-cd ..
+cd github-search
 cd client
 npm install
 ```
