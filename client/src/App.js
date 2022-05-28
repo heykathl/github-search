@@ -4,14 +4,30 @@ import React, { useState, useRef, useEffect } from 'react';
 
 function App() {
 
-
-
   const handleApiSearch = async () => {
-    await axios.get(`https://api.github.com/users/heykathl/repos`)
+    const language = [];
+    await axios.get(`https://api.github.com/users/heykathl/repos&per_page=100`)
     .then((response) => {
-      console.log(response.data[0].language)
-    
+      const data = response.data;
+      data.map((res) => {
+        language.push(res.language)
+      })
+      // console.log(language)
     })
+
+    const counts = {}
+    let maxCount = 0
+    let maxKey;
+    for (let i = 0; i < language.length; i++) {
+      const key = language[i];
+      const count = (counts[key] = (counts[key] || 0) + 1);
+      if (count > maxCount) {
+        maxCount = count;
+        maxKey = key;
+      }
+    }
+    console.log(maxKey)
+    return maxKey;
   }
 
   return (
