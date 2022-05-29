@@ -1,11 +1,20 @@
 # Github-Search
 A frontend web application to search for a GitHub user and find out their favourite programming language.
 
+## Client Specification
+We would like you to build an application that allows users to enter an arbitrary Github username and be presented with a best guess of the Github user's favourite programming language.
+
+Documentation for the Github API can be found at 
+
+You may use any programming language, framework, or library.
+
 ## Technologies Used
 
 - [React](https://reactjs.org) - JavaScript library for building user interface.
-- [Node.js](https://nodejs.dev/) - JavaScript run-time environment.
-- [Github API](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api) - API used to interact with GitHub to obtain the neccessary data.
+- [Github API](https://developer.github.com/v3/) - API used to interact with GitHub to obtain the neccessary data.
+- [Axios](https://axios-http.com/)- Promise-based HTTP Client for node. js and the browser which sends asynchronous HTTP requests to REST endpoints and perform CRUD operations.
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Testing React components.
+- [Jest](https://jestjs.io/) - JavaScript unit and feature testing framework.
 
 ## Setting Up
 
