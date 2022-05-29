@@ -1,20 +1,26 @@
 import "@testing-library/jest-dom";
-import { render, screen } from '@testing-library/react';
-import FindLanguage from './Language';
+import { fireEvent, render, screen } from '@testing-library/react';
+import FindLanguage, { handleApiSearch } from './FindLanguage';
+
 import * as React from "react";
 import axios from "axios";
 
+jest.mock("axios")
+
 describe("FindLanguage", () => {
   test('renders homepage with text field and search button', () => {
-    render(<FindLanguage />)
-    const username = screen.getByPlaceholderText("Enter Username")
+    render(<FindLanguage />);
+    
+    const text = screen.getByText("Find out a user's favourite programming language!");
+    expect(text).toBeInTheDocument();
 
-    expect(username).toBeInDocument()
-    const userInput = screen.getByLabelText("user-input")
-    expect(userInput).toBeInDocument()
+    const textField = screen.getByLabelText("user-input");
+    expect(textField).toBeInTheDocument();
 
-    const searchBtn = screen.getByRole("button", {name: "Search" })
-    expect(searchBtn).toBeInDocument()
+    const searchBtn = screen.getByRole("button", {name: "Search" });
+    expect(searchBtn).toBeInTheDocument();
   });
+
+  
 
 })

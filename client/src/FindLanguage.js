@@ -1,7 +1,7 @@
 import './FindLanguage.css';
 import axios from 'axios'
-import React, { useState, useRef } from 'react';
-import Language from './Language'
+import React, { useState, useRef, useEffect } from 'react';
+// import Language from './Language'
 
 function FindLanguage() { 
   const userNameRef = useRef();
@@ -19,7 +19,7 @@ function FindLanguage() {
         languages.push(res.language)
       })  
       // console.log(languages)
-      setResponse(mostUsedLanguage(languages))
+      setResponse(countLanguage(languages))
       // console.log(language)
       userNameRef.current.value = null
     })
@@ -32,7 +32,7 @@ function FindLanguage() {
     })
   }
 
-  const mostUsedLanguage = (languageArray) => {
+  const countLanguage = (languageArray) => {
     const counts = {}
       let maxCount = 0
       let maxKey;
@@ -48,14 +48,21 @@ function FindLanguage() {
   }
 
  // what happens if more than one most used language?
+  const mostUsedLanguage = () => {
+    
+  }
+
+// only show response when re-renders - useEffect
 
   return (
     <div className="language">
       <h1>GitHub Search</h1>
-      <div>Find out a user's favourite programming language!</div>
-      <input ref={userNameRef} type="text" placeholder="Enter Username" aria-label='user-input'/>
-      <button name="search" onClick={handleApiSearch}>Search</button>
-      <Language user={user} response={response}/>
+        <img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="github-octocat-logo" width="50%" height="50%"/>
+        <div>Find out a user's favourite programming language!</div>
+        <br></br>
+        <input ref={userNameRef} type="text" placeholder="Enter Username" aria-label='user-input'/>
+        <button name="search" onClick={handleApiSearch}>Search</button>
+        <h3 className="response">{user}{response}</h3>
     </div>
   );
 }
