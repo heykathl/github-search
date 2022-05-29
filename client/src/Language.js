@@ -1,11 +1,11 @@
 
 
-export default function Language({ faveLanguage }) {
+export default function Language({ user, response }) {
 
   return (
     
     <div>
-      <h3>{faveLanguage}</h3>
+      <h3>{user} {response} </h3>
       </div>
   )
 }
