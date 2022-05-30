@@ -7,7 +7,17 @@ function FindLanguage() {
   const userNameRef = useRef();
   const languages = [];
   const [response, setResponse] = useState(null);
+  const [language, setLanguage] = useState(null);
   const [user, setUser] = useState(null)
+  const [change, setChange] = useState(false)
+
+  useEffect(() => {
+    if(change){
+      setResponse(user + "'s favourite programming language is " + language + "!")
+    } else {
+      setResponse(response)
+    }
+  }, [language]);
 
   const handleApiSearch = async () => {
     const username = userNameRef.current.value
@@ -19,12 +29,14 @@ function FindLanguage() {
         languages.push(res.language)
       })  
       // console.log(languages)
-      setResponse(countLanguage(languages))
+      setLanguage(countLanguage(languages))
       // console.log(language)
       userNameRef.current.value = null
+      setChange(true)
     })
     .catch((e) => {
       if(e.request.status === 404){
+        setChange(false)
         setResponse("Uh oh! This user does not exist! Try again mate!")
       } else {
         console.log(e.message)
@@ -46,13 +58,6 @@ function FindLanguage() {
       }
     return maxKey
   }
-
- // what happens if more than one most used language?
-  const mostUsedLanguage = () => {
-
-  }
-
-// only show response when re-renders - useEffect
 
   return (
     <div className="language">

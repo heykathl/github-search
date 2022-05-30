@@ -68,7 +68,7 @@ describe("FindLanguage", () => {
     });
 
     expect(axios.get).toHaveBeenCalled();
-    const response = await screen.findByText("Javascript");
+    const response = await screen.findByText("heykathl's favourite programming language is Javascript!");
     expect(response).toBeInTheDocument();
     
   });
@@ -95,6 +95,31 @@ describe("FindLanguage", () => {
     expect(axios.get).toHaveBeenCalled();
     const response = await within(screen.getByLabelText("response"));
     expect(response).not.toEqual("Javascript")
+  })
+
+  test("returns first language if there are more than one favourite language", async () => {
+   
+    const mockData = {
+      data: [
+        {language: "Ruby"},
+        {language: "Ruby"},
+        {language: "Javascript"},
+        {language: "Javascript"}
+      ]
+    };
+    axios.get.mockResolvedValueOnce(mockData);
+
+    render(<FindLanguage />);
+    const textField = screen.getByLabelText("user-input");
+    
+    act(() => {
+      fireEvent.change(textField, { target: { value: "heykathl" } })
+      fireEvent.click(screen.getByRole("button", {name: "Search" }))
+    });
+
+    expect(axios.get).toHaveBeenCalled();
+    const response = await screen.findByText("heykathl's favourite programming language is Ruby!");
+    expect(response).toBeInTheDocument();
   })
 
 })
