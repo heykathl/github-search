@@ -1,7 +1,6 @@
 import './FindLanguage.css';
 import axios from 'axios'
 import React, { useState, useRef, useEffect } from 'react';
-// import Language from './Language'
 
 function FindLanguage() { 
   const userNameRef = useRef();
@@ -27,10 +26,8 @@ function FindLanguage() {
       const data = response.data;
       data.map((res) => {
         languages.push(res.language)
-      })  
-      // console.log(languages)
+      }) 
       setLanguage(countLanguage(languages))
-      // console.log(language)
       userNameRef.current.value = null
       setChange(true)
     })

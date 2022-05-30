@@ -52,7 +52,7 @@ This will display the front page:
 ```bash
 cd github-search
 cd client
-npm run start:test # Starts the test server
+npm test # Starts the test server
 ```
 
 ## Credit
