@@ -62,7 +62,7 @@ function FindLanguage() {
   return (
     <div className="language">
       <h1>GitHub Search</h1>
-        <img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="github-octocat-logo" width="50%" height="50%"/>
+        <img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="github-octocat-logo" width="20%" height="20%"/>
         <div>Find out a user's favourite programming language!</div>
         <br></br>
         <input ref={userNameRef} type="text" placeholder="Enter Username" aria-label='user-input'/>
