@@ -49,7 +49,7 @@ function FindLanguage() {
 
  // what happens if more than one most used language?
   const mostUsedLanguage = () => {
-    
+
   }
 
 // only show response when re-renders - useEffect
@@ -62,7 +62,7 @@ function FindLanguage() {
         <br></br>
         <input ref={userNameRef} type="text" placeholder="Enter Username" aria-label='user-input'/>
         <button name="search" onClick={handleApiSearch}>Search</button>
-        <h3 className="response">{user}{response}</h3>
+        <h3 className="response" aria-label="response">{response}</h3>
     </div>
   );
 }
